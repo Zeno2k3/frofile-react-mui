@@ -1,33 +1,31 @@
 import { Button, Stack, styled, Typography } from "@mui/material";
 import theme from "../theme";
 import { keyframes } from "@mui/system";
-import logo1 from '../assets/logo1.png'
-import logo2 from "../assets/logo2.png"
+import logo1 from "../assets/logo1.png";
+import logo2 from "../assets/logo2.png";
 
 const switchAnimation = keyframes`
   0%, 45% { opacity: 1; }
   50%, 95% { opacity: 0; }
   100% { opacity: 1; }
 `;
-const LogoBox = styled("div")(({}) => ({
-  position: 'relative',
-  '& img': {
-    width: '100%',
-    height: '100%',
-    objectFit: 'contain',
-    position: 'absolute',
+const LogoBox = styled("div")(() => ({
+  position: "relative",
+  "& img": {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+    position: "absolute",
     top: 0,
     left: 0,
   },
-  '& .logo2': {
+  "& .logo2": {
     opacity: 0,
-    animation: `${switchAnimation} 4s infinite reverse`,
-  }
+    animation: `${switchAnimation} 3s infinite reverse`,
+  },
 }));
 const CustomButton = styled("button")(({ theme }) => ({
-  backgroundColor: "#000",
-  paddingInline: 32,
-  paddingBlock: 12,
+  backgroundColor: "transparent",
   color: "#f0f8ff",
   transition: "all 0.3s ease-in-out",
   "&:hover": {
@@ -39,10 +37,12 @@ const CustomButton = styled("button")(({ theme }) => ({
   borderColor: "#f0f8ff",
   borderRadius: 6,
   fontSize: 16,
-  fontWeight: theme.typography.fontWeightMedium,
+  fontWeight: 600,
   textAlign: "center",
   cursor: "pointer",
   borderStyle: "solid",
+  paddingBlock: 12,
+  paddingInline: 32,
 }));
 
 const HeaderComponent = () => {
@@ -50,10 +50,16 @@ const HeaderComponent = () => {
     <>
       <Stack
         sx={{
+          top: 0,
+          left: 0,
+          right: 0,
           flexDirection: "row",
           justifyContent: "space-between",
-          backgroundColor: "#000",
-          padding: "44px",
+          alignItems: "center",
+          backgroundColor: "transparent",
+          p: "44px",
+          position: "fixed",
+          zIndex: 1000,
         }}
       >
         <Button

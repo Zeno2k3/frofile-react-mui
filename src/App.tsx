@@ -1,14 +1,18 @@
-import { Stack } from "@mui/material"
 import {
-  HeaderComponent
+  AboutComponent,
+  HeaderComponent,
+  HomeComponent,
+  SkillComponent
 } from "./components/index"
-
 
 function App() {
   return (
-    <Stack spacing={4}>
-      <HeaderComponent/>
-    </Stack>
+    <>
+      <HeaderComponent/> 
+      <HomeComponent/>
+      <AboutComponent/>
+      <SkillComponent/>
+    </>
   )
 }
 

@@ -2,29 +2,31 @@ import { createTheme } from "@mui/material";
 import { red } from "@mui/material/colors";
 
 const theme = createTheme({
-    palette:{
+    palette: {
         primary: {
             main: '#f0f8ff'
         },
         secondary: {
             main: red[500]
         },
-        text: { 
-           secondary: '#f0f8ff'
+        text: {
+            secondary: '#f0f8ff'
         }
     },
     typography: {
-        fontFamily: ['Montserrat','sans-serif'].join(','),
-        allVariants:{
-            color:  '#f0f8ff',
-            fontSize: 16
+        allVariants: {
+            fontFamily: '"Source Sans 3",sans-serif',
+            fontSize: 18,
+            fontWeight: 500,
+            color: '#f0f8ff',
+            textAlign: 'center'
         }
     },
     components: {
         MuiButton: {
             styleOverrides: {
                 root: {
-                    textTransform: 'none'
+                    textTransform: 'none',
                 }
             }
         },

@@ -1,6 +1,11 @@
 import HeaderComponent from "./HeaderComponent"
-
+import HomeComponent from "./HomeComponent"
+import AboutComponent from "./AboutComponent"
+import SkillComponent from "./SkillComponent"
 
 export {
-    HeaderComponent
+    HomeComponent,
+    HeaderComponent,
+    AboutComponent,
+    SkillComponent
 }
