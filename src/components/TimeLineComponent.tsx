@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import TextComponent from "./ui/TextComponent";
 
-const AboutComponent = () => {
+const TimeLineComponent = () => {
   return (
     <Box
       sx={{
@@ -10,12 +10,12 @@ const AboutComponent = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "blue",
+        backgroundColor: "#000",
       }}
     >
-      <TextComponent text={"Minh Quân.dev"} type="title" />
+      <TextComponent text={"Time line"} type="title" />
     </Box>
   );
 };
 
-export default AboutComponent;
+export default TimeLineComponent;

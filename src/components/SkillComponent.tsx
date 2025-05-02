@@ -126,7 +126,11 @@ const SkillComponent = () => {
       >
         A problem is a chance for you to do your best.
       </Typography>
-      <TextComponent text={"Skill & Experience"} type={"title"} />
+      <TextComponent
+        text={"Skill & Experience"}
+        type={"title"}
+        style={{ lineHeight: 2 }}
+      />
       <TextComponent
         text={
           "The main area of expertise is front end development (client side of the web)."

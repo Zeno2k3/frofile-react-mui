@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import TextComponent from "./ui/TextComponent";
 
-const AboutComponent = () => {
+const ContactComponent = () => {
   return (
     <Box
       sx={{
@@ -10,12 +10,13 @@ const AboutComponent = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "blue",
+
+        backgroundColor: "#000",
       }}
     >
-      <TextComponent text={"Minh Quân.dev"} type="title" />
+      <TextComponent text={"Contact"} type="title" />
     </Box>
   );
 };
 
-export default AboutComponent;
+export default ContactComponent;

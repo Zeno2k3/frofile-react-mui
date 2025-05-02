@@ -1,19 +1,25 @@
 import {
   AboutComponent,
+  ContactComponent,
   HeaderComponent,
   HomeComponent,
-  SkillComponent
-} from "./components/index"
+  ShowProject,
+  SkillComponent,
+  TimeLineComponent,
+} from "./components/index";
 
 function App() {
   return (
     <>
-      <HeaderComponent/> 
-      <HomeComponent/>
-      <AboutComponent/>
-      <SkillComponent/>
+      <HeaderComponent />
+      <HomeComponent />
+      <AboutComponent />
+      <TimeLineComponent />
+      <SkillComponent />
+      <ShowProject />
+      <ContactComponent />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

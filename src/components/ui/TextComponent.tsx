@@ -14,19 +14,20 @@ const TextComponent: React.FC<Props> = ({ text, type = "text", style }) => {
         <Typography
           sx={{
             fontWeight: 700,
-            fontSize: 60,
-            textAlign: "center",
+            fontSize: 62,
+            textAlign: "left",
             transition: "all 0.3s ease-in-out",
+            lineHeight: 1,
             "& span": {
               display: "inline-block",
-              transition: "transform 0.3s ease, color 0.3s ease", //
+              transition: "transform 0.3s ease, color 0.3s ease",
               "&:hover": {
                 color: "#f4a949",
                 transform: "translateY(3px)",
               },
             },
             cursor: "pointer",
-            p: "12px",
+            ...style,
           }}
         >
           {text.split("").map((char, index) => (
