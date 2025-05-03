@@ -3,6 +3,7 @@ import TextComponent from "./ui/TextComponent";
 import Home from "../assets/img-home.svg";
 import dot from "../assets/side-dots.png";
 import slider from "../assets/purple_romb1.png";
+import LinkComponent from "./ui/LinkComponent";
 
 const HomeComponent = () => {
   return (
@@ -43,6 +44,7 @@ const HomeComponent = () => {
             interactions, developing rich web applications and seamless web
             experiences
           </Typography>
+          <LinkComponent text={"About me"} rotate={"90deg"} />
         </Box>
         <Box
           sx={{
