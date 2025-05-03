@@ -57,7 +57,7 @@ const HeaderComponent = () => {
           justifyContent: "space-between",
           alignItems: "center",
           backgroundColor: "transparent",
-          p: "44px",
+          p: "40px",
           position: "fixed",
           zIndex: 1000,
         }}

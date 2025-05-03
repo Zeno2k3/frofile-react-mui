@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import TextComponent from "./ui/TextComponent";
+import theme from "../theme";
 
 const ContactComponent = () => {
   return (
@@ -10,8 +11,7 @@ const ContactComponent = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-
-        backgroundColor: "#000",
+        backgroundColor: theme.palette.secondary.main,
       }}
     >
       <TextComponent text={"Contact"} type="title" />

@@ -4,6 +4,7 @@ import Home from "../assets/img-home.svg";
 import dot from "../assets/side-dots.png";
 import slider from "../assets/purple_romb1.png";
 import LinkComponent from "./ui/LinkComponent";
+import theme from "../theme";
 
 const HomeComponent = () => {
   return (
@@ -11,11 +12,12 @@ const HomeComponent = () => {
       sx={{
         width: "100%",
         height: "100vh", // chiều cao trình duyệt
-        background: "#000",
+        backgroundColor: theme.palette.secondary.main,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         position: "relative",
+        overflow: "hidden",
       }}
     >
       <Box
@@ -25,7 +27,7 @@ const HomeComponent = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#000",
+          backgroundColor: theme.palette.secondary.main,
         }}
       >
         <Box
@@ -64,7 +66,7 @@ const HomeComponent = () => {
             sx={{
               position: "absolute",
               bottom: "50%",
-              right: 50,
+              right: "5%",
               transform: "translateY(50%) rotate(90deg)",
               zIndex: 1,
             }}

@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import TextComponent from "./ui/TextComponent";
+import theme from "../theme";
 
 const TimeLineComponent = () => {
   return (
@@ -10,7 +11,7 @@ const TimeLineComponent = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#000",
+        backgroundColor: theme.palette.secondary.main,
       }}
     >
       <TextComponent text={"Time line"} type="title" />

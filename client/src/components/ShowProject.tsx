@@ -1,3 +1,4 @@
+import theme from "../theme";
 import TextComponent from "./ui/TextComponent";
 import { Box } from "@mui/material";
 
@@ -10,7 +11,7 @@ const ShowProject = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#000",
+        backgroundColor: theme.palette.secondary.main,
       }}
     >
       <TextComponent text={"Show Project"} type="title" />

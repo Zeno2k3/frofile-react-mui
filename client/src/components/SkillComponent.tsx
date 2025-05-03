@@ -15,6 +15,7 @@ import VisualStudio from "../assets/uil--visual-studio.svg";
 import Axios from "../assets/simple-icons--axios.svg";
 import Express from "../assets/lineicons--expressjs.svg";
 import Mongodb from "../assets/mongodb-svgrepo-com.svg";
+import theme from "../theme";
 
 const dataSkill = [
   {
@@ -110,7 +111,7 @@ const SkillComponent = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#000",
+        backgroundColor: theme.palette.secondary.main,
         flexDirection: "column",
       }}
     >
