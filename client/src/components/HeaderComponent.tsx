@@ -1,8 +1,8 @@
 import { Button, Stack, styled, Typography } from "@mui/material";
 import theme from "../theme";
 import { keyframes } from "@mui/system";
-import logo1 from "../assets/logo1.png";
-import logo2 from "../assets/logo2.png";
+import logo1 from "../assets/image/logo1.png";
+import logo2 from "../assets/image/logo2.png";
 
 const switchAnimation = keyframes`
   0%, 45% { opacity: 1; }

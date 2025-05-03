@@ -3,9 +3,9 @@ import LinkComponent from "./ui/LinkComponent";
 import TextComponent from "./ui/TextComponent";
 import { Box, Button, Typography } from "@mui/material";
 
-import shrere_lg from "../assets/sphere_lg.png";
-import shrere_sm from "../assets/sphere_sm.png";
-import shrere_md from "../assets/sphere_md.png";
+import shrere_lg from "../assets/image/sphere_lg.png";
+import shrere_sm from "../assets/image/sphere_sm.png";
+import shrere_md from "../assets/image/sphere_md.png";
 
 
 const ShowProject = () => {

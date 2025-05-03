@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import TextComponent from "./ui/TextComponent";
-import Home from "../assets/img-home.svg";
-import dot from "../assets/side-dots.png";
-import slider from "../assets/purple_romb1.png";
+import Home from "../assets/svg/img-home.svg";
+import dot from "../assets/image/side-dots.png";
+import slider from "../assets/image/purple_romb1.png";
 import LinkComponent from "./ui/LinkComponent";
 import theme from "../theme";
 

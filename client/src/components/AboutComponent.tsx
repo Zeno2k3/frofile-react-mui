@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import TextComponent from "./ui/TextComponent";
-import profile from "../assets/T.png";
-import cube from "../assets/dark_cube2.png";
-import dot2 from "../assets/purple_romb2.png";
+import profile from "../assets/image/T.png";
+import cube from "../assets/image/dark_cube2.png";
+import dot2 from "../assets/image/purple_romb2.png";
 import theme from "../theme";
 
 const AboutComponent = () => {
