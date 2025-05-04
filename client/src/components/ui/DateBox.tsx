@@ -11,7 +11,7 @@ const TagSkill = styled("div")(() => ({
   backgroundColor: "#2dd4bf1a",
   color: "#5eead4",
   padding: "5px 10px",
-  borderRadius: "5px",
+  borderRadius: "20px",
   fontSize: "18px",
   fontWeight: 500,
   textAlign: "center",
@@ -22,38 +22,56 @@ const DateBox: React.FC<Props> = ({ title, date, description, Tags }) => {
     <Box
       sx={{
         display: "flex",
-        p: "10px 10px 6px 10px",
+        justifyContent: "space-between",
+        p: "20px 20px 30px",
         ":hover": {
           borderRadius: 3.5,
           backgroundColor: alpha("#2dd4bf1a", 0.2),
           transition: "all 0.3s ease-in-out",
+          boxShadow: `0 0 0 1px ${alpha("#2dd4bf1a", 0.3)}`,
+        },
+        cursor: "pointer",
+        ":hover .title": {
+          color: "#5eead4",
         },
       }}
     >
       <Typography
         sx={{
           textTransform: "uppercase",
-          fontWeight: 300,
+          fontWeight: 500,
+          mr: 10,
+          opacity: 0.5,
           fontSize: "22px",
+          flexShrink: 0, // Không cho phần tử co lại khi không đủ không gian
         }}
       >
         {date}
       </Typography>
-      <Box>
+      <Box
+        sx={{ width: 550, display: "flex", flexDirection: "column", gap: 1 }}
+      >
         <Typography
+          className="title"
           sx={{ textAlign: "left", fontWeight: 700, fontSize: "22px" }}
         >
           {title}
         </Typography>
         <Typography
-          sx={{ textAlign: "left", fontWeight: 300, fontSize: "16px" }}
+          sx={{
+            textAlign: "left",
+            fontWeight: 500,
+            fontSize: "16px",
+            opacity: 0.5,
+          }}
         >
           {description}
         </Typography>
         <Box
           sx={{
             display: "flex",
-            gap: 1,
+            gap: 0.5,
+            flexWrap: "wrap",
           }}
         >
           {Tags.map((tag, i) => (
