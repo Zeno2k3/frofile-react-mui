@@ -1,12 +1,14 @@
 import theme from "../theme";
-import LinkComponent from "./ui/LinkComponent";
-import TextComponent from "./ui/TextComponent";
+import LinkComponent from "../components/ui/LinkComponent";
+import TextComponent from "../components/ui/TextComponent";
 import { Box, Button, Typography } from "@mui/material";
 
 import shrere_lg from "../assets/image/sphere_lg.png";
 import shrere_sm from "../assets/image/sphere_sm.png";
 import shrere_md from "../assets/image/sphere_md.png";
 
+import code from "../assets/svg/code-blue1.svg";
+import code2 from "../assets/svg/code-blue2.svg";
 
 const ShowProject = () => {
   return (
@@ -19,8 +21,23 @@ const ShowProject = () => {
         alignItems: "center",
         backgroundColor: theme.palette.secondary.main,
         position: "relative",
+        overflow: "hidden",
       }}
     >
+      <img
+        src={code2}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          top: -450,
+          right: -535,
+          zIndex: 10,
+          rotate: "0deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }}
+      />
       <Box
         sx={{
           width: "72%",
@@ -71,6 +88,19 @@ const ShowProject = () => {
         top: "249px",
         left: "30%",
       }} />
+      <img
+        src={code}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          bottom: -440,
+          left: -550,
+          zIndex: 10,
+          rotate: "180deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }} />
     </Box>
   );
 };

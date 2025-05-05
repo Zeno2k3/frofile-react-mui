@@ -1,7 +1,9 @@
 import { Box, Typography } from "@mui/material";
-import TextComponent from "./ui/TextComponent";
+import TextComponent from "../components/ui/TextComponent";
 import theme from "../theme";
-import DateBox from "./ui/DateBox";
+import DateBox from "../components/ui/DateBox";
+import code from "../assets/svg/code-blue1.svg";
+import code2 from "../assets/svg/code-blue2.svg";
 
 const DataExperience = [
   {
@@ -114,8 +116,24 @@ const TimeLineComponent = () => {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: theme.palette.secondary.main,
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      <img
+        src={code2}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          top: -450,
+          right: -535,
+          zIndex: 10,
+          rotate: "0deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }}
+      />
       <Box
         sx={{
           width: "72%",
@@ -164,6 +182,19 @@ const TimeLineComponent = () => {
           ))}
         </Box>
       </Box>
+      <img
+        src={code}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          bottom: -440,
+          left: -550,
+          zIndex: 10,
+          rotate: "180deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }} />
     </Box>
   );
 };

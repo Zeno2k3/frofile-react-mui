@@ -1,17 +1,18 @@
 import { Box, Typography } from "@mui/material";
-import TextComponent from "./ui/TextComponent";
-import Home from "../assets/svg/img-home.svg";
+import TextComponent from "../components/ui/TextComponent";
 import dot from "../assets/image/side-dots.png";
 import slider from "../assets/image/purple_romb1.png";
-import LinkComponent from "./ui/LinkComponent";
+import LinkComponent from "../components/ui/LinkComponent";
 import theme from "../theme";
+import code from "../assets/svg/code-blue1.svg";
 
 const HomeComponent = () => {
+
   return (
     <Box
       sx={{
         width: "100%",
-        height: "100vh", // chiều cao trình duyệt
+        height: "100vh",
         backgroundColor: theme.palette.secondary.main,
         display: "flex",
         justifyContent: "center",
@@ -23,11 +24,11 @@ const HomeComponent = () => {
       <Box
         sx={{
           width: "72%",
-          height: "100%",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           backgroundColor: theme.palette.secondary.main,
+          zIndex: 100,
         }}
       >
         <Box
@@ -42,26 +43,27 @@ const HomeComponent = () => {
             style={{ p: "0px 0px 30px 0px" }}
           />
           <Typography sx={{ textAlign: "left", width: "500px" }}>
-            Resolving design problems, building smart user interfaces and useful
-            interactions, developing rich web applications and seamless web
-            experiences
+            Resolving design problems, building smart user interfaces and
+            useful interactions, developing rich web applications and seamless
+            web experiences
           </Typography>
-          <LinkComponent text={"About me"} rotate={"90deg"} />
+          <LinkComponent text={"About me"} rotate={"90deg"} styleText={{
+            color: "#9c27b0"
+          }}
+            onClick={() => {
+              const section = document.getElementById('about');
+              if (section) {
+                console.log('hi')
+                section.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          />
         </Box>
         <Box
           sx={{
             p: "0px 100px 0px 0px",
           }}
         >
-          <img
-            src={Home}
-            alt="Home"
-            width={605}
-            style={{
-              position: "relative", // cần thiết để zIndex hoạt động
-              zIndex: 2, // cao hơn ảnh dot
-            }}
-          />
           <Box
             sx={{
               position: "absolute",
@@ -75,15 +77,30 @@ const HomeComponent = () => {
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
+      <img
+        src={slider}
+        alt="slider"
+        width={200}
+        style={{
           position: "absolute",
           bottom: 10,
           left: "35%",
         }}
-      >
-        <img src={slider} alt="slider" width={200} />
-      </Box>
+      />
+      <img
+        src={code}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          bottom: -440,
+          left: -550,
+          zIndex: 10,
+          rotate: "180deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }}
+      />
     </Box>
   );
 };

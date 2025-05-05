@@ -1,12 +1,13 @@
-import { styled, Typography } from "@mui/material";
+import { styled, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-
 interface Props {
   text: string;
   rotate: "0deg" | "90deg";
   color?: string;
-  onChange?: () => void;
+  styleText?: SxProps<Theme>;
+  style?: SxProps<Theme>;
+  onClick?: () => void;
 }
 
 const LinkCustom = styled("div")<Pick<Props, "rotate">>(({ rotate }) => ({
@@ -19,17 +20,22 @@ const LinkCustom = styled("div")<Pick<Props, "rotate">>(({ rotate }) => ({
     transition: "transform 0.3s ease",
   },
   height: "30px",
+  zIndex: 50,
 }));
 
 const LinkComponent: React.FC<Props> = ({
   text,
   color = "#9c27b0",
   rotate,
-  onChange,
+  styleText,
+  style,
+  onClick,
 }) => {
   return (
-    <LinkCustom rotate={rotate} onChange={onChange}>
-      <Typography sx={{ color: color, height: "30px" }}>{text}</Typography>
+    <LinkCustom rotate={rotate} onClick={onClick} sx={style}>
+      <Typography sx={{ ...styleText, height: "30px" }}>
+        {text}
+      </Typography>
       <KeyboardArrowRightIcon
         className="arrow-icon"
         sx={{

@@ -1,5 +1,5 @@
 import { Box, Button, styled, Typography } from "@mui/material";
-import TextComponent from "./ui/TextComponent";
+import TextComponent from "../components/ui/TextComponent";
 import React from "../assets/svg/fa-brands--react.svg";
 import Nodejs from "../assets/svg/grommet-icons--node.svg";
 import JS from "../assets/svg/cib--javascript.svg";
@@ -16,7 +16,8 @@ import Axios from "../assets/svg/simple-icons--axios.svg";
 import Express from "../assets/svg/lineicons--expressjs.svg";
 import Mongodb from "../assets/svg/mongodb-svgrepo-com.svg";
 import theme from "../theme";
-
+import code from "../assets/svg/code-blue1.svg";
+import code2 from "../assets/svg/code-blue2.svg";
 const dataSkill = [
   {
     id: 1,
@@ -113,8 +114,24 @@ const SkillComponent = () => {
         alignItems: "center",
         backgroundColor: theme.palette.secondary.main,
         flexDirection: "column",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      <img
+        src={code}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          top: -444,
+          left: -550,
+          zIndex: 10,
+          rotate: "180deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }}
+      />
       <Typography
         sx={{
           fontSize: 18,
@@ -128,9 +145,9 @@ const SkillComponent = () => {
         A problem is a chance for you to do your best.
       </Typography>
       <TextComponent
-        text={"Skill & Experience"}
+        text={"Skills & Tech"}
         type={"title"}
-        style={{ lineHeight: 2 }}
+        style={{ pb: "20px" }}
       />
       <TextComponent
         text={
@@ -180,6 +197,20 @@ const SkillComponent = () => {
           </BoxIcon>
         ))}
       </Box>
+      <img
+        src={code2}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          bottom: -440,
+          right: -535,
+          zIndex: 10,
+          rotate: "0deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }}
+      />
     </Box>
   );
 };

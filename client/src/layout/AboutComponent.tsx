@@ -1,9 +1,11 @@
 import { Box, Typography } from "@mui/material";
-import TextComponent from "./ui/TextComponent";
+import TextComponent from "../components/ui/TextComponent";
 import profile from "../assets/image/T.png";
 import cube from "../assets/image/dark_cube2.png";
 import dot2 from "../assets/image/purple_romb2.png";
 import theme from "../theme";
+import code from "../assets/svg/code-blue1.svg";
+import code2 from "../assets/svg/code-blue2.svg";
 
 const AboutComponent = () => {
   return (
@@ -16,8 +18,24 @@ const AboutComponent = () => {
         alignItems: "center",
         backgroundColor: theme.palette.secondary.main,
         position: "relative",
+        overflow: "hidden",
+        isolation: "isolate",
       }}
     >
+      <img
+        src={code}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          top: -444,
+          left: -550,
+          zIndex: 10,
+          rotate: "180deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
+        }}
+      />
       <Box
         sx={{
           width: "72%",
@@ -84,6 +102,7 @@ const AboutComponent = () => {
           position: "absolute",
           zIndex: 1,
           right: "42%",
+          fontSize: 13,
         }}
       />
       <img
@@ -102,8 +121,22 @@ const AboutComponent = () => {
         width={149}
         style={{
           position: "absolute",
-          top: "189px",
+          top: "240px",
           left: "54%",
+        }}
+      />
+      <img
+        src={code2}
+        width={"900px"}
+        alt="code"
+        style={{
+          position: "absolute",
+          bottom: -440,
+          right: -535,
+          zIndex: 10,
+          rotate: "0deg",
+          filter: "blur(5px)",
+          opacity: 0.6,
         }}
       />
     </Box>
