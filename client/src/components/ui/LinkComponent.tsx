@@ -1,6 +1,7 @@
 import { styled, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useNavigation } from "../../context/NavigationContext";
 interface Props {
   text: string;
   rotate: "0deg" | "90deg";
@@ -8,9 +9,11 @@ interface Props {
   styleText?: SxProps<Theme>;
   style?: SxProps<Theme>;
   onClick?: () => void;
+  href?: string;
+  target?: string;
 }
 
-const LinkCustom = styled("div")<Pick<Props, "rotate">>(({ rotate }) => ({
+const LinkCustom = styled("a")<Pick<Props, "rotate">>(({ rotate }) => ({
   display: "flex",
   alignItems: "center",
   flexDirection: "row",
@@ -21,6 +24,7 @@ const LinkCustom = styled("div")<Pick<Props, "rotate">>(({ rotate }) => ({
   },
   height: "30px",
   zIndex: 50,
+  backgroundColor: 'transparent',
 }));
 
 const LinkComponent: React.FC<Props> = ({
@@ -30,9 +34,26 @@ const LinkComponent: React.FC<Props> = ({
   styleText,
   style,
   onClick,
+  href,
+  target,
 }) => {
+  const { navigateTo } = useNavigation();
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (href && href.startsWith("#")) {
+      e.preventDefault();
+      const id = href.substring(1);
+      navigateTo(id);
+    }
+
+    if (onClick) {
+      onClick();
+    }
+  };
   return (
-    <LinkCustom rotate={rotate} onClick={onClick} sx={style}>
+    <LinkCustom rotate={rotate} onClick={handleClick} sx={style}
+      href={href}
+      target={target}>
       <Typography sx={{ ...styleText, height: "30px" }}>
         {text}
       </Typography>

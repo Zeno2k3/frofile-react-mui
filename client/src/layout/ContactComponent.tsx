@@ -7,6 +7,7 @@ import code2 from "../assets/svg/code-blue2.svg";
 const ContactComponent = () => {
   return (
     <Box
+      id="contact"
       sx={{
         width: "100%",
         height: "100vh",

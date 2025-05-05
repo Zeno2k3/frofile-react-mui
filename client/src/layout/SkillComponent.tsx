@@ -106,6 +106,7 @@ const BoxIcon = styled("div")(() => ({
 const SkillComponent = () => {
   return (
     <Box
+      id={"skill"}
       sx={{
         width: "100%",
         height: "100vh",

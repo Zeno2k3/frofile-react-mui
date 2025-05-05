@@ -10,6 +10,7 @@ import code2 from "../assets/svg/code-blue2.svg";
 const AboutComponent = () => {
   return (
     <Box
+      id={"about"}
       sx={{
         width: "100%",
         height: "100vh",
@@ -55,7 +56,6 @@ const AboutComponent = () => {
         >
           <TextComponent text="Hi, I'm MQuân" type={"title"} />
           <TextComponent text="FullStack Developer" type={"title"} />
-
           <Typography
             sx={{
               fontWeight: 300,
@@ -65,8 +65,7 @@ const AboutComponent = () => {
               lineHeight: "24px",
               letterSpacing: "1px",
               opacity: 0.5,
-            }}
-          >
+            }}>
             FullStack Developer / JavaScript Fan / Wordpress Expert
           </Typography>
         </Box>

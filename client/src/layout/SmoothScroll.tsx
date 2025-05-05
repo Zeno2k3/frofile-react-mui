@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import theme from "../theme";
 import { alpha, Box, Typography } from "@mui/material";
 import LinkComponent from "../components/ui/LinkComponent";
+import { useNavigation } from "../context/NavigationContext";
 
 interface Section {
   id: string;
@@ -14,26 +15,31 @@ interface SmoothScrollProps {
 }
 
 const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
-  const [activeSection, setActiveSection] = useState<number>(0); // Vị trí của section hiện tại index
-  const [isScrolling, setIsScrolling] = useState<boolean>(false); // Đang trong quá trình scroll
-  const containerRef = useRef<HTMLDivElement>(null); // Tham chiếu đến component hiện tại
-  const sectionRefs = useRef<HTMLDivElement[]>([]);
+  const { activeId, isScrolling, navigateTo } = useNavigation();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Xử lý scroll khi người dùng cuộn
+  // Get the current section index from ID
+  const getCurrentIndex = () => {
+    return sections.findIndex(section => section.id === activeId);
+  };
+
+  // Handle scroll when user scrolls with mouse wheel
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
       e.preventDefault();
 
       if (isScrolling) return;
 
-      const direction = e.deltaY > 0 ? 1 : -1; // cuộn lên hay cuộn xuống
-      const nextSectionIndex = Math.min(
-        Math.max(0, activeSection + direction),
+      const currentIndex = getCurrentIndex();
+      const direction = e.deltaY > 0 ? 1 : -1; // scroll up or down
+      const nextIndex = Math.min(
+        Math.max(0, currentIndex + direction),
         sections.length - 1
       );
 
-      if (nextSectionIndex !== activeSection) {
-        scrollToSection(nextSectionIndex);
+      if (nextIndex !== currentIndex) {
+        const nextSectionId = sections[nextIndex].id;
+        navigateTo(nextSectionId);
       }
     };
 
@@ -49,33 +55,37 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
         currentContainer.removeEventListener("wheel", handleScroll);
       }
     };
-  }, [activeSection, isScrolling, sections.length]);
+  }, [activeId, isScrolling, sections, navigateTo]);
 
-  // Xử lý sự kiện phím mũi tên
+  // Handle arrow key events
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isScrolling) return;
 
+      const currentIndex = getCurrentIndex();
+
       if (e.key === "ArrowDown" || e.key === "ArrowRight") {
         e.preventDefault();
-        const nextSection = Math.min(activeSection + 1, sections.length - 1);
-        if (nextSection !== activeSection) {
-          scrollToSection(nextSection);
+        const nextIndex = Math.min(currentIndex + 1, sections.length - 1);
+        if (nextIndex !== currentIndex) {
+          const nextSectionId = sections[nextIndex].id;
+          navigateTo(nextSectionId);
         }
       } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
         e.preventDefault();
-        const prevSection = Math.max(activeSection - 1, 0);
-        if (prevSection !== activeSection) {
-          scrollToSection(prevSection);
+        const prevIndex = Math.max(currentIndex - 1, 0);
+        if (prevIndex !== currentIndex) {
+          const prevSectionId = sections[prevIndex].id;
+          navigateTo(prevSectionId);
         }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeSection, isScrolling, sections.length]);
+  }, [activeId, isScrolling, sections, navigateTo]);
 
-  // Xử lý cảm ứng trên thiết bị di động
+  // Handle touch events for mobile devices
   useEffect(() => {
     let touchStartY = 0;
 
@@ -88,21 +98,23 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
 
       const touchEndY = e.changedTouches[0].clientY;
       const diff = touchStartY - touchEndY;
+      const currentIndex = getCurrentIndex();
 
-      // Phát hiện hướng vuốt
-      if (Math.abs(diff) > 50) {
-        // Ngưỡng để xác định là vuốt chứ không phải chạm
+      // Detect swipe direction
+      if (Math.abs(diff) > 50) { // Threshold to determine swipe vs tap
         if (diff > 0) {
-          // Vuốt lên
-          const nextSection = Math.min(activeSection + 1, sections.length - 1);
-          if (nextSection !== activeSection) {
-            scrollToSection(nextSection);
+          // Swipe up
+          const nextIndex = Math.min(currentIndex + 1, sections.length - 1);
+          if (nextIndex !== currentIndex) {
+            const nextSectionId = sections[nextIndex].id;
+            navigateTo(nextSectionId);
           }
         } else {
-          // Vuốt xuống
-          const prevSection = Math.max(activeSection - 1, 0);
-          if (prevSection !== activeSection) {
-            scrollToSection(prevSection);
+          // Swipe down
+          const prevIndex = Math.max(currentIndex - 1, 0);
+          if (prevIndex !== currentIndex) {
+            const prevSectionId = sections[prevIndex].id;
+            navigateTo(prevSectionId);
           }
         }
       }
@@ -120,30 +132,17 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
         currentContainer.removeEventListener("touchend", handleTouchEnd);
       }
     };
-  }, [activeSection, isScrolling, sections.length]);
+  }, [activeId, isScrolling, sections, navigateTo]);
 
-  // Hàm scroll tới section
-  const scrollToSection = (index: number) => {
-    setIsScrolling(true);
-    setActiveSection(index);
-
-    // Sử dụng scrollIntoView với behavior: smooth
-    sectionRefs.current[index]?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    // Hết hiệu ứng scroll sau 800ms để tránh scroll liên tục
-    setTimeout(() => {
-      setIsScrolling(false);
-    }, 800);
+  // Handle navigation click
+  const handleNavClick = (id: string) => {
+    if (isScrolling || id === activeId) return;
+    navigateTo(id);
   };
 
-  // Xử lý click vào navigation
-  const handleNavClick = (index: number) => {
-    if (isScrolling || index === activeSection) return;
-    scrollToSection(index);
-  };
+  // Get the current section index for render logic
+  const currentIndex = getCurrentIndex();
+  const isLastSection = currentIndex === sections.length - 1;
 
   return (
     <div
@@ -151,7 +150,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
       ref={containerRef}
       style={{ height: "100vh" }}
     >
-      {/* Navigation*/}
+      {/* Navigation */}
       <div
         className="navigation"
         style={{
@@ -167,8 +166,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
         {sections.map((section, index) => (
           <Box
             key={section.id}
-            id={section.id}
-            onClick={() => handleNavClick(index)}
+            onClick={() => handleNavClick(section.id)}
             sx={{
               width: "50px",
               height: "60px",
@@ -177,14 +175,15 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
               gap: "10px",
               alignItems: "center",
               borderRight: 1,
+              cursor: "pointer",
               borderColor: alpha("#fff", 0.5),
               justifyContent: "center",
-              cursor: "pointer",
               ":hover .scroll": {
                 transition: "transform all 0.3s ease-in-out",
               },
               position: "relative",
             }}
+            title={section.title}
           >
             <Typography
               sx={{
@@ -193,38 +192,34 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
               }}
             >{`${index}${index}`}</Typography>
             <Box
-              key={section.id}
+              key={`indicator-${section.id}`}
               className={"scroll"}
               sx={{
                 width: "3px",
                 height: "60px",
                 borderRadius: "100px",
                 transition: "all 0.3s ease-in-out",
-                backgroundColor: activeSection === index
+                backgroundColor: activeId === section.id
                   ? theme.palette.primary.main
                   : "transparent",
                 position: "absolute",
                 right: -1,
               }}
-              title={section.title}
-            ></Box>
+            />
           </Box>
         ))}
       </div>
 
-      {sections.map((section, index) => (
+      {sections.map((section) => (
         <div
           key={section.id}
-          ref={(el) => {
-            if (el) {
-              sectionRefs.current[index] = el;
-            }
-          }}
+          id={section.id}
         >
           {section.component}
         </div>
       ))}
-      {activeSection !== 5 ? (
+
+      {!isLastSection ? (
         <LinkComponent
           style={{
             position: "fixed",
@@ -241,8 +236,10 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
           text={"Scroll Down"}
           rotate={"0deg"}
           onClick={() => {
-            setActiveSection(activeSection + 1);
-            scrollToSection(activeSection + 1);
+            const nextIndex = currentIndex + 1;
+            if (nextIndex < sections.length) {
+              navigateTo(sections[nextIndex].id);
+            }
           }}
         />
       ) : (
@@ -263,10 +260,8 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
           text={"Back To Top"}
           rotate={"0deg"}
           onClick={() => {
-            setActiveSection(0);
-            scrollToSection(0);
+            navigateTo(sections[0].id);
           }}
-
         />
       )}
     </div>

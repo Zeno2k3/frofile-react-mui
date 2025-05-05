@@ -8,11 +8,12 @@ import {
   TimeLineComponent,
 } from "./layout/index";
 import SmoothScroll from "./layout/SmoothScroll";
+import { NavigationProvider } from "./context/NavigationContext";
 
 const Section = [{
   id: "home",
   title: "Home",
-  component: <HomeComponent/>,
+  component: <HomeComponent />,
 },
 {
   id: "about",
@@ -43,8 +44,10 @@ const Section = [{
 function App() {
   return (
     <>
-      <HeaderComponent />
-      <SmoothScroll sections={Section} />
+      <NavigationProvider sections={Section}>
+        <HeaderComponent />
+        <SmoothScroll sections={Section} />
+      </NavigationProvider>
     </>
   );
 }

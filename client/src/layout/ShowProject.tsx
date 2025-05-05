@@ -13,6 +13,7 @@ import code2 from "../assets/svg/code-blue2.svg";
 const ShowProject = () => {
   return (
     <Box
+      id={"project"}
       sx={{
         width: "100%",
         height: "100vh",

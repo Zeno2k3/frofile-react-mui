@@ -5,11 +5,13 @@ import slider from "../assets/image/purple_romb1.png";
 import LinkComponent from "../components/ui/LinkComponent";
 import theme from "../theme";
 import code from "../assets/svg/code-blue1.svg";
+import { useNavigation } from "../context/NavigationContext";
 
 const HomeComponent = () => {
-
+  const { navigateTo } = useNavigation();
   return (
     <Box
+      id="home"
       sx={{
         width: "100%",
         height: "100vh",
@@ -50,13 +52,7 @@ const HomeComponent = () => {
           <LinkComponent text={"About me"} rotate={"90deg"} styleText={{
             color: "#9c27b0"
           }}
-            onClick={() => {
-              const section = document.getElementById('about');
-              if (section) {
-                console.log('hi')
-                section.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
+            onClick={() => navigateTo("about")}
           />
         </Box>
         <Box

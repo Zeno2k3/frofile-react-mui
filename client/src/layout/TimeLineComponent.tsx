@@ -109,6 +109,7 @@ const DataExperience = [
 const TimeLineComponent = () => {
   return (
     <Box
+      id="timeline"
       sx={{
         width: "100%",
         height: "100vh",
