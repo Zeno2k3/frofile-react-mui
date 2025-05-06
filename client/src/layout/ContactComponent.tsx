@@ -1,10 +1,29 @@
 import { Box, Button, Typography } from "@mui/material";
 import theme from "../theme";
-import earthlight from "../assets/image/earthlights1k.jpg";
 import code from "../assets/svg/code-blue1.svg";
 import code2 from "../assets/svg/code-blue2.svg";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import Earth from "../three/Earth.tsx";
+import { motion } from "framer-motion";
 
 const ContactComponent = () => {
+  const getTextVariants = {
+    hidden: {
+      x: -330,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+        delay: 0.1,
+      },
+    },
+  };
+
   return (
     <Box
       id="contact"
@@ -38,70 +57,81 @@ const ContactComponent = () => {
           width: "72%",
           height: "50%",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
           alignItems: "center",
           backgroundColor: "transparent",
         }}
       >
-        <img
-          src={earthlight}
-          alt=""
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 50 }}
           style={{
-            width: "550px",
+            width: "950px",
           }}
-        />
+        >
+          <ambientLight intensity={0.3} />
+          <Earth rotationSpeed={0.0025} />
+          <directionalLight position={[5, 0, 0]} intensity={5} />
+          <OrbitControls enableZoom={false} />
+        </Canvas>
         <Box
           sx={{
             width: "360px",
             display: "flex",
             flexDirection: "column",
             gap: 1.5,
-            pl: "30px",
+            mr: "60px",
           }}
         >
-          <Typography
-            sx={{
-              textAlign: "left",
-            }}
+          <motion.div
+            variants={getTextVariants}
+            initial="hidden"
+            whileInView="visible"
           >
-            What would you do if you had a software expert available at your
-            fingertips?
-          </Typography>
-          <Typography
-            sx={{
-              textAlign: "left",
-            }}
-          >
-            Want to start new project? Or just say hey.You can also follow me on{" "}
-            <Button
+            <Typography
               sx={{
-                color: "#f4a949",
-                cursor: "pointer",
-                p: 0,
+                textAlign: "left",
+              }}
+            >
+              What would you do if you had a software expert available at your
+              fingertips?
+            </Typography>
+            <Typography
+              sx={{
+                textAlign: "left",
+              }}
+            >
+              Want to start new project? Or just say hey.You can also follow me
+              on{" "}
+              <Button
+                sx={{
+                  color: "#f4a949",
+                  cursor: "pointer",
+                  p: 0,
+                  ":hover": {
+                    textDecoration: "underline",
+                    transition: "all 0.3s ease-in-out",
+                  },
+                }}
+              >
+                Instagram
+              </Button>
+              .
+            </Typography>
+            <Typography
+              sx={{
+                textAlign: "left",
+                fontWeight: 700,
+                fontSize: 32,
                 ":hover": {
-                  textDecoration: "underline",
+                  color: "#f4a949",
+                  cursor: "pointer",
                   transition: "all 0.3s ease-in-out",
                 },
               }}
             >
-              Instagram
-            </Button>
-            .
-          </Typography>
-          <Typography
-            sx={{
-              textAlign: "left",
-              fontWeight: 700,
-              fontSize: 32,
-              ":hover": {
-                color: "#f4a949",
-                cursor: "pointer",
-                transition: "all 0.3s ease-in-out",
-              },
-            }}
-          >
-            mquan592003@gmail.com
-          </Typography>
+              mquan592003@gmail.com
+            </Typography>
+          </motion.div>
         </Box>
       </Box>
       <img

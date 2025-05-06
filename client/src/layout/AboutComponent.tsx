@@ -6,11 +6,42 @@ import dot2 from "../assets/image/purple_romb2.png";
 import theme from "../theme";
 import code from "../assets/svg/code-blue1.svg";
 import code2 from "../assets/svg/code-blue2.svg";
+import { motion } from "framer-motion";
 
 const AboutComponent = () => {
+  const getTextVariants = {
+    hidden: {
+      y: -300,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const getImageVariants = {
+    hidden: {
+      y: -100,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+        delay: 0.1,
+      },
+    },
+  };
+
   return (
     <Box
-      id={"about"}
       sx={{
         width: "100%",
         height: "100vh",
@@ -52,22 +83,32 @@ const AboutComponent = () => {
           sx={{
             width: "570px",
             alignItems: "left",
+            zIndex: 100,
           }}
         >
-          <TextComponent text="Hi, I'm MQuân" type={"title"} />
-          <TextComponent text="FullStack Developer" type={"title"} />
-          <Typography
-            sx={{
-              fontWeight: 300,
-              textAlign: "left",
-              fontSize: 20,
-              margin: "20px 0px",
-              lineHeight: "24px",
-              letterSpacing: "1px",
-              opacity: 0.5,
-            }}>
-            FullStack Developer / JavaScript Fan / Wordpress Expert
-          </Typography>
+          <motion.div
+            variants={getTextVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-100px" }}
+          >
+            <TextComponent text="Hi, I'm MQuân" type={"title"} />
+            <TextComponent text="Web Developer" type={"title"} />
+
+            <Typography
+              sx={{
+                fontWeight: 300,
+                textAlign: "left",
+                fontSize: 20,
+                margin: "20px 0px",
+                lineHeight: "24px",
+                letterSpacing: "1px",
+                opacity: 0.5,
+              }}
+            >
+              FontEnd Developer / JavaScript Fan / Wordpress Expert
+            </Typography>
+          </motion.div>
         </Box>
         <Box
           sx={{
@@ -78,18 +119,24 @@ const AboutComponent = () => {
             gap: 2,
           }}
         >
-          <Typography sx={{ textAlign: "left" }}>
-            Professionally connected with the web development industry.
-          </Typography>
-          <Typography sx={{ textAlign: "left" }}>
-            Problem solver, well-organized person, loyal employee with high
-            attention to detail. Fan of Boxing, outdoor activities, video games,
-            and coding of course.
-          </Typography>
-          <Typography sx={{ textAlign: "left" }}>
-            Interested in the entire frontend spectrum and working on ambitious
-            projects with interesting people.
-          </Typography>
+          <motion.div
+            variants={getTextVariants}
+            initial="hidden"
+            whileInView="visible"
+          >
+            <Typography sx={{ textAlign: "left" }}>
+              Professionally connected with the web development industry.
+            </Typography>
+            <Typography sx={{ textAlign: "left" }}>
+              Problem solver, well-organized person, loyal employee with high
+              attention to detail. Fan of Boxing, outdoor activities, video
+              games, and coding of course.
+            </Typography>
+            <Typography sx={{ textAlign: "left" }}>
+              Interested in the entire frontend spectrum and working on
+              ambitious projects with interesting people.
+            </Typography>
+          </motion.div>
         </Box>
       </Box>
       <img
@@ -101,10 +148,9 @@ const AboutComponent = () => {
           position: "absolute",
           zIndex: 1,
           right: "42%",
-          fontSize: 13,
         }}
       />
-      <img
+      <motion.img
         src={cube}
         alt="cube"
         width={200}
@@ -113,16 +159,22 @@ const AboutComponent = () => {
           bottom: "121px",
           left: "380px",
         }}
+        variants={getImageVariants}
+        initial="hidden"
+        whileInView="visible"
       />
-      <img
+      <motion.img
         src={dot2}
         alt="dot2"
         width={149}
         style={{
           position: "absolute",
-          top: "240px",
+          top: "189px",
           left: "54%",
         }}
+        variants={getImageVariants}
+        initial="hidden"
+        whileInView="visible"
       />
       <img
         src={code2}

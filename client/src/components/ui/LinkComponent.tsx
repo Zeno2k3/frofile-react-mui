@@ -45,7 +45,6 @@ const LinkComponent: React.FC<Props> = ({
       const id = href.substring(1);
       navigateTo(id);
     }
-
     if (onClick) {
       onClick();
     }

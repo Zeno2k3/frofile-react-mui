@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import theme from "../theme";
-import { alpha, Box, Typography } from "@mui/material";
+import { alpha, Box, Button, Typography } from "@mui/material";
 import LinkComponent from "../components/ui/LinkComponent";
 import { useNavigation } from "../context/NavigationContext";
+import github from "../assets/svg/svgexport-2.svg";
 
 interface Section {
   id: string;
@@ -20,7 +21,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
 
   // Get the current section index from ID
   const getCurrentIndex = () => {
-    return sections.findIndex(section => section.id === activeId);
+    return sections.findIndex((section) => section.id === activeId);
   };
 
   // Handle scroll when user scrolls with mouse wheel
@@ -101,7 +102,8 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
       const currentIndex = getCurrentIndex();
 
       // Detect swipe direction
-      if (Math.abs(diff) > 50) { // Threshold to determine swipe vs tap
+      if (Math.abs(diff) > 50) {
+        // Threshold to determine swipe vs tap
         if (diff > 0) {
           // Swipe up
           const nextIndex = Math.min(currentIndex + 1, sections.length - 1);
@@ -199,9 +201,10 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
                 height: "60px",
                 borderRadius: "100px",
                 transition: "all 0.3s ease-in-out",
-                backgroundColor: activeId === section.id
-                  ? theme.palette.primary.main
-                  : "transparent",
+                backgroundColor:
+                  activeId === section.id
+                    ? theme.palette.primary.main
+                    : "transparent",
                 position: "absolute",
                 right: -1,
               }}
@@ -211,10 +214,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
       </div>
 
       {sections.map((section) => (
-        <div
-          key={section.id}
-          id={section.id}
-        >
+        <div key={section.id} id={section.id}>
           {section.component}
         </div>
       ))}
@@ -230,7 +230,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
             rotate: "90deg",
           }}
           styleText={{
-            color: alpha(theme.palette.primary.main, 0.5)
+            color: alpha(theme.palette.primary.main, 0.5),
           }}
           color={theme.palette.primary.main}
           text={"Scroll Down"}
@@ -254,7 +254,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
             transform: "revert",
           }}
           styleText={{
-            color: alpha(theme.palette.primary.main, 0.5)
+            color: alpha(theme.palette.primary.main, 0.5),
           }}
           color={theme.palette.primary.main}
           text={"Back To Top"}
@@ -264,6 +264,16 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ sections }) => {
           }}
         />
       )}
+      <Button
+        sx={{
+          position: "fixed",
+          bottom: 50,
+          left: "40px",
+          zIndex: 100,
+        }}
+      >
+        <img src={github} alt="icon" style={{ width: 30, height: 30 }} />
+      </Button>
     </div>
   );
 };

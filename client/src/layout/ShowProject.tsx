@@ -58,37 +58,60 @@ const ShowProject = () => {
             justifyContent: "center",
             alignItems: "center",
             gap: 2,
-          }}>
-          <TextComponent text={"Portfolio & Previous Projects"} type="title" style={{ textAlign: "center" }} />
-          <Typography>I have built various different projects to fit different aspects of the client's business.
-            If you want to see more examples of my work than the ones showcased in this site, please {" "}
+          }}
+        >
+          <TextComponent
+            text={"Portfolio & Previous Projects"}
+            type="title"
+            style={{ textAlign: "center" }}
+          />
+          <Typography>
+            I have built various different projects to fit different aspects of
+            the client's business. If you want to see more examples of my work
+            than the ones showcased in this site, please{" "}
             <Button sx={{ color: "#f4a949", p: 0 }}>contact me</Button>
           </Typography>
-          <LinkComponent text="See Project" rotate='0deg' />
+          <LinkComponent
+            text="See Project"
+            rotate="0deg"
+            styleText={{ color: "#9c27b0" }}
+          />
         </Box>
       </Box>
-      <img src={shrere_lg} alt="shrere_lg" style={{
-        position: "absolute",
-        width: "170px",
-        zIndex: 1,
-        top: "330px",
-        right: "20%",
-        rotate: "20deg",
-      }} />
-      <img src={shrere_sm} alt="shere_sm" style={{
-        position: "absolute",
-        width: "105px",
-        zIndex: 1,
-        bottom: "149px",
-        left: "20%",
-      }} />
-      <img src={shrere_md} alt="shere_md" style={{
-        position: "absolute",
-        width: "70px",
-        zIndex: 1,
-        top: "249px",
-        left: "30%",
-      }} />
+      <img
+        src={shrere_lg}
+        alt="shrere_lg"
+        style={{
+          position: "absolute",
+          width: "170px",
+          zIndex: 1,
+          top: "330px",
+          right: "20%",
+          rotate: "20deg",
+        }}
+      />
+      <img
+        src={shrere_sm}
+        alt="shere_sm"
+        style={{
+          position: "absolute",
+          width: "105px",
+          zIndex: 1,
+          bottom: "149px",
+          left: "20%",
+        }}
+      />
+      <img
+        src={shrere_md}
+        alt="shere_md"
+        style={{
+          position: "absolute",
+          width: "70px",
+          zIndex: 1,
+          top: "249px",
+          left: "30%",
+        }}
+      />
       <img
         src={code}
         width={"900px"}
@@ -101,7 +124,8 @@ const ShowProject = () => {
           rotate: "180deg",
           filter: "blur(5px)",
           opacity: 0.6,
-        }} />
+        }}
+      />
     </Box>
   );
 };

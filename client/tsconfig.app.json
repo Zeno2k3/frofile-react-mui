@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/context/NavigationContext.tsx"]
+  "include": ["src", "src/context/NavigationContext.tsx", "src/three/Earth.tsx"]
 }

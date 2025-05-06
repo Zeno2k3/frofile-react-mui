@@ -4,97 +4,19 @@ import theme from "../theme";
 import DateBox from "../components/ui/DateBox";
 import code from "../assets/svg/code-blue1.svg";
 import code2 from "../assets/svg/code-blue2.svg";
+import { motion } from "framer-motion";
 
 const DataExperience = [
   {
     title: "Full Stack Developer",
-    date: "2023",
+    date: "2024 - 2025",
     description:
       "Problem solver, well-organized person, loyal employee with high attention to detail. Fan of Boxing, outdoor activities, video games, and coding of course.",
-    tags: [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "React",
-      "Node.js",
-      "MongoDB",
-      "React",
-      "Node.js",
-      "MongoDB",
-      "React",
-      "Node.js",
-      "MongoDB",
-    ],
-  },
-  {
-    title: "Software Engineer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["Java", "Spring", "MySQL"],
-  },
-  {
-    title: "Web Designer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["C++", "HTML", "CSS", "JavaScript"],
-  },
-  {
-    title: "Full Stack Developer",
-    date: "2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     tags: ["React", "Node.js", "MongoDB"],
   },
   {
-    title: "Software Engineer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["Java", "Spring", "MySQL"],
-  },
-  {
-    title: "Web Designer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["C++", "HTML", "CSS", "JavaScript"],
-  },
-  {
-    title: "Web Designer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["C++", "HTML", "CSS", "JavaScript"],
-  },
-  {
-    title: "Full Stack Developer",
-    date: "2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    title: "Software Engineer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["Java", "Spring", "MySQL"],
-  },
-  {
-    title: "Web Designer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["C++", "HTML", "CSS", "JavaScript"],
-  },
-  {
-    title: "Web Designer",
-    date: "2022 - 2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["C++", "HTML", "CSS", "JavaScript"],
-  },
-  {
-    title: "Full Stack Developer",
-    date: "2023",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    title: "Software Engineer",
-    date: "2022 - 2023",
+    title: "Web ",
+    date: "2023 - 2024",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     tags: ["Java", "Spring", "MySQL"],
   },
@@ -107,6 +29,22 @@ const DataExperience = [
 ];
 
 const TimeLineComponent = () => {
+  const getTextVariants = {
+    hidden: {
+      x: -330,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+        delay: 0.1,
+      },
+    },
+  };
+
   return (
     <Box
       id="timeline"
@@ -138,7 +76,7 @@ const TimeLineComponent = () => {
       <Box
         sx={{
           width: "72%",
-          height: "50%",
+          height: "60%",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -150,17 +88,23 @@ const TimeLineComponent = () => {
             width: "550px",
           }}
         >
-          <TextComponent text={"Experience"} type="title" />
-          <Typography
-            sx={{
-              pt: "30px",
-              textAlign: "left",
-            }}
+          <motion.div
+            variants={getTextVariants}
+            initial="hidden"
+            whileInView="visible"
           >
-            Resolving design problems, building smart user interfaces and useful
-            interactions, developing rich web applications and seamless web
-            experiences
-          </Typography>
+            <TextComponent text={"Timeline"} type="title" />
+            <Typography
+              sx={{
+                pt: "30px",
+                textAlign: "left",
+              }}
+            >
+              Resolving design problems, building smart user interfaces and
+              useful interactions, developing rich web applications and seamless
+              web experiences
+            </Typography>
+          </motion.div>
         </Box>
         <Box
           sx={{
@@ -195,7 +139,8 @@ const TimeLineComponent = () => {
           rotate: "180deg",
           filter: "blur(5px)",
           opacity: 0.6,
-        }} />
+        }}
+      />
     </Box>
   );
 };

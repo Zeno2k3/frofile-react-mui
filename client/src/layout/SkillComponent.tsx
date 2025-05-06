@@ -18,6 +18,7 @@ import Mongodb from "../assets/svg/mongodb-svgrepo-com.svg";
 import theme from "../theme";
 import code from "../assets/svg/code-blue1.svg";
 import code2 from "../assets/svg/code-blue2.svg";
+import { motion } from "framer-motion";
 const dataSkill = [
   {
     id: 1,
@@ -104,6 +105,21 @@ const BoxIcon = styled("div")(() => ({
 }));
 
 const SkillComponent = () => {
+  const getTextVariants = {
+    hidden: {
+      x: 330,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+        delay: 0.1,
+      },
+    },
+  };
   return (
     <Box
       id={"skill"}
@@ -133,18 +149,24 @@ const SkillComponent = () => {
           opacity: 0.6,
         }}
       />
-      <Typography
-        sx={{
-          fontSize: 18,
-          textTransform: "uppercase",
-          fontWeight: 200,
-          p: "0px 14px 0px 0px",
-          lineHeight: "24px",
-          textAlign: "center",
-        }}
+      <motion.div
+        variants={getTextVariants}
+        initial="hidden"
+        whileInView="visible"
       >
-        A problem is a chance for you to do your best.
-      </Typography>
+        <Typography
+          sx={{
+            fontSize: 18,
+            textTransform: "uppercase",
+            fontWeight: 200,
+            p: "0px 14px 0px 0px",
+            lineHeight: "24px",
+            textAlign: "center",
+          }}
+        >
+          A problem is a chance for you to do your best.
+        </Typography>
+      </motion.div>
       <TextComponent
         text={"Skills & Tech"}
         type={"title"}
@@ -168,6 +190,7 @@ const SkillComponent = () => {
           "HTML, CSS, JS, building small and medium web applications with Vue or React, custom plugins, features, animations, and coding interactive layouts.I have also full-stack developer experience with one of the most popular open source CMS on the web - WordPress"
         }
       />
+
       <Typography sx={{ margin: " 0px 0px 32px 0px" }}>
         Visit my
         <Button
