@@ -7,65 +7,63 @@ Source: https://sketchfab.com/3d-models/earth-4de1bcbd22a444abb4f089b9b78ec96a
 Title: Earth
 */
 
-import * as THREE from 'three'
-import { useRef } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
-import { GLTF } from 'three-stdlib'
-import { GroupProps } from '@react-three/fiber'
+import * as THREE from "three";
+import { JSX, useRef } from "react";
+import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { GLTF } from "three-stdlib";
 
-type ActionName = 'Take 001'
-
+type ActionName = "Take 001";
 interface GLTFAction extends THREE.AnimationClip {
-  name: ActionName
+  name: ActionName;
 }
 
 type GLTFResult = GLTF & {
   nodes: {
-    ['Earth_Material_#50_0']: THREE.Mesh
-    ['EarthClouds_Material_#62_0']: THREE.Mesh
-  }
+    ["Earth_Material_#50_0"]: THREE.Mesh;
+    ["EarthClouds_Material_#62_0"]: THREE.Mesh;
+  };
   materials: {
-    Material_50: THREE.MeshStandardMaterial
-    Material_62: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
+    Material_50: THREE.MeshStandardMaterial;
+    Material_62: THREE.MeshStandardMaterial;
+  };
+  animations: GLTFAction[];
+};
 
 type EarthProps = {
-  rotationSpeed?: number
-} & GroupProps
+  rotationSpeed?: number;
+} & JSX.IntrinsicElements["group"];
 
 export default function Earth({ rotationSpeed = 0.001, ...props }: EarthProps) {
-  const group = useRef<THREE.Group>(null!)
-  const cloudsRef = useRef<THREE.Group>(null!)
-  const { nodes, materials, animations } = useGLTF('/models/earth.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const group = useRef<THREE.Group>(null!);
+  const cloudsRef = useRef<THREE.Group>(null!);
+  const { nodes, materials } = useGLTF(
+    "/models/earth.glb"
+  ) as unknown as GLTFResult;
 
-  // Sử dụng useFrame để tạo hiệu ứng xoay mượt mà
-  useFrame((state, delta) => {
+  useFrame((_, delta: number) => {
     if (group.current) {
-      // Xoay trái đất
-      group.current.rotation.y += rotationSpeed * delta * 60
+      group.current.rotation.y += rotationSpeed * delta * 60;
     }
-
     if (cloudsRef.current) {
-      // Xoay các đám mây với tốc độ khác để tạo hiệu ứng thực tế hơn
-      cloudsRef.current.rotation.y += rotationSpeed * 1.3 * delta * 60
+      cloudsRef.current.rotation.y += rotationSpeed * 1.3 * delta * 60;
     }
-  })
+  });
 
   return (
     <group ref={group} {...props} dispose={null} scale={0.4}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
-          <group name="3f0d8c1a7c7c45138e5b99b56838fcb9fbx" rotation={[Math.PI / 2, 0, 0]}>
+          <group
+            name="3f0d8c1a7c7c45138e5b99b56838fcb9fbx"
+            rotation={[Math.PI / 2, 0, 0]}
+          >
             <group name="Object_2">
               <group name="RootNode">
                 <group name="Earth" rotation={[-Math.PI / 2, 0, 0]}>
                   <mesh
                     name="Earth_Material_#50_0"
-                    geometry={nodes['Earth_Material_#50_0'].geometry}
+                    geometry={nodes["Earth_Material_#50_0"].geometry}
                     material={materials.Material_50}
                   />
                 </group>
@@ -77,7 +75,7 @@ export default function Earth({ rotationSpeed = 0.001, ...props }: EarthProps) {
                 >
                   <mesh
                     name="EarthClouds_Material_#62_0"
-                    geometry={nodes['EarthClouds_Material_#62_0'].geometry}
+                    geometry={nodes["EarthClouds_Material_#62_0"].geometry}
                     material={materials.Material_62}
                   />
                 </group>
@@ -87,7 +85,7 @@ export default function Earth({ rotationSpeed = 0.001, ...props }: EarthProps) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/models/earth.glb')
+useGLTF.preload("/models/earth.glb");

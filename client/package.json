@@ -1,13 +1,16 @@
 {
   "name": "client",
   "private": true,
+  "homepage": "https://Zeno2k3.github.io/frofile-react-mui",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -19,6 +22,7 @@
     "@react-three/fiber": "^9.1.2",
     "@types/three": "^0.176.0",
     "framer-motion": "^12.9.7",
+    "gh-pages": "^6.3.0",
     "motion": "^12.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
